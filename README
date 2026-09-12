@@ -1,0 +1,76 @@
+# Retail Automation
+
+A scalable Odoo-based retail management solution designed for small retail businesses, initially focused on sneaker and fashion shops.
+
+## Project Goal
+
+The project aims to automate common retail operations such as:
+
+* Product and variant management
+* Customer management
+* Order tracking
+* Inventory management
+* Sales workflows
+* Payment and delivery tracking
+* Reporting
+
+The system is designed to demonstrate practical Odoo development and integration with core Odoo applications.
+
+## Initial Business Problem
+
+Many small retail businesses manage their stock and customer orders through WhatsApp, spreadsheets, and manual processes.
+
+This can lead to:
+
+* Difficulty tracking available stock
+* Overselling products
+* Lost customer orders
+* Difficulty identifying best-selling products
+* Manual follow-up with customers
+
+Retail Automation aims to centralize these operations inside Odoo.
+
+## MVP Scope
+
+The first version will focus on:
+
+1. Sneaker and product management
+2. Product variants and sizes
+3. Customer management
+4. Order management
+5. Order status tracking
+6. Inventory updates
+7. Basic reporting
+
+## Future Scope
+
+Future versions may include:
+
+* CRM integration
+* Sales quotations
+* Invoicing
+* Accounting workflows
+* WhatsApp integration
+* M-Pesa integration
+* Delivery management
+* Multi-branch support
+
+## Technology
+
+* Odoo 18
+* Python
+* PostgreSQL
+* XML
+* JavaScript
+
+## Development Workflow
+
+The project follows a Git feature-branch workflow:
+
+* `main` — stable releases
+* `develop` — integration branch
+* `feature/*` — individual features
+
+## Current Status
+
+Project setup in progress.
