@@ -1,0 +1,58 @@
+<odoo>
+
+    <!-- Brand List -->
+    <record id="view_retail_brand_list" model="ir.ui.view">
+        <field name="name">retail.brand.list</field>
+        <field name="model">retail.brand</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="active"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Brand Form -->
+    <record id="view_retail_brand_form" model="ir.ui.view">
+        <field name="name">retail.brand.form</field>
+        <field name="model">retail.brand</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+
+    <!-- Brand Action -->
+    <record id="action_retail_brand" model="ir.actions.act_window">
+        <field name="name">Brands</field>
+        <field name="res_model">retail.brand</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+
+    <!-- Configuration Menu -->
+    <menuitem
+        id="menu_retail_configuration"
+        name="Configuration"
+        sequence="100"
+    />
+
+
+    <!-- Brand Menu -->
+    <menuitem
+        id="menu_retail_brand"
+        name="Brands"
+        parent="menu_retail_configuration"
+        action="action_retail_brand"
+        sequence="10"
+    />
+
+</odoo>
