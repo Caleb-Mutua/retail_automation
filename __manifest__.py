@@ -1,4 +1,4 @@
-{
+{  # noqa: B018
     'name': 'Retail Automation',
     'version': '18.0.1.0.0',
     'summary': 'Retail automation solution for small businesses',
@@ -16,9 +16,12 @@
     'category': 'Sales',
     'license': 'LGPL-3',
 
-    'depends': ['base',],
+    'depends': ['base','product',],
 
-    'data': [],
+    'data': [
+         "security/ir.model.access.csv",
+         "views/retail_brand_views.xml",
+        ],
 
     'demo': [],
 
