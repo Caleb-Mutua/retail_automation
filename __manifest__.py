@@ -21,6 +21,7 @@
     'data': [
          "security/ir.model.access.csv",
          "views/retail_brand_views.xml",
+         "views/product_template_views.xml",
         ],
 
     'demo': [],
