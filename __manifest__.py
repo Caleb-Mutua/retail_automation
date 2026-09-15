@@ -16,12 +16,13 @@
     'category': 'Sales',
     'license': 'LGPL-3',
 
-    'depends': ['base','product',],
+    'depends': ['base','product','contacts'],
 
     'data': [
          "security/ir.model.access.csv",
          "views/retail_brand_views.xml",
          "views/product_template_views.xml",
+         "views/retail_customers_views.xml",
         ],
 
     'demo': [],
