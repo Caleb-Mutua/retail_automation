@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <record id="view_sale_order_form_retail" model="ir.ui.view">
+        <field name="name">sale.order.form.retail.automation</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="retail_order_status" readonly="1"/>
+            </xpath>
+            <xpath expr="//button[@name='action_confirm']" position="after">
+
+             <button
+                    name="action_start_processing"
+                    string="Start Processing"
+                    type="object"
+                    class="btn-primary"
+                    invisible="retail_order_status != 'confirmed'"
+             />
+             <button
+                    name="action_mark_ready"
+                    string="Mark Ready"
+                    type="object"
+                    class="btn-primary"
+                    invisible="retail_order_status != 'processing'"
+             />
+             <button
+                    name="action_mark_delivered"
+                    string="Mark Delivered"
+                    type="object"
+                    class="btn-primary"
+                    invisible="retail_order_status != 'ready'"
+             />
+            </xpath>
+            
+        </field>
+    </record>
+
+</odoo>
