@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Retail Management Root Menu -->
+    <menuitem
+        id="menu_retail_management"
+        name="Retail Management"
+        sequence="10"
+    />
+
+    <!-- Configuration -->
+    <menuitem
+        id="menu_retail_configuration"
+        name="Configuration"
+        parent="menu_retail_management"
+        sequence="100"
+    />
+
+</odoo>
