@@ -78,11 +78,11 @@
          <field name="domain">[('customer_status', '!=', False)]</field>
      </record>
 
-     <!-- Customer Menu -->
-     <menuitem
-         id="menu_retail_customers"
-         name="Customers"
-         action="action_retail_customers"
-         sequence="20"
-     />
+    <menuitem
+    id="menu_retail_customers"
+    name="Customers"
+    parent="menu_retail_management"
+    action="action_retail_customers"
+    sequence="20"
+/>
 </odoo>

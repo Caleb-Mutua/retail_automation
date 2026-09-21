@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Retail Management Root Menu -->
+    <menuitem
+        id="menu_retail_management"
+        name="Retail Automation"
+        sequence="10"
+    />
+    
+    <!-- Products -->
+    <menuitem
+        id="menu_retail_products"
+        name="Products"
+        parent="menu_retail_management"
+        action="product.product_template_action"
+        sequence="10"
+    />
+
+    <!-- Sales -->
+    <menuitem
+        id="menu_retail_sales"
+        name="Sales"
+        parent="menu_retail_management"
+        action="sale.action_quotations"
+        sequence="30"
+    />
+
+    <!-- Configuration -->
+    <menuitem
+        id="menu_retail_configuration"
+        name="Configuration"
+        parent="menu_retail_management"
+        sequence="100"
+    />
+
+</odoo>

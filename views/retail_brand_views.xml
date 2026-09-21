@@ -38,12 +38,7 @@
     </record>
 
 
-    <!-- Configuration Menu -->
-    <menuitem
-        id="menu_retail_configuration"
-        name="Configuration"
-        sequence="100"
-    />
+
 
 
     <!-- Brand Menu -->
