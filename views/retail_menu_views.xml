@@ -26,6 +26,44 @@
         sequence="30"
     />
 
+    <!-- Inventory -->
+    <menuitem
+        id="menu_retail_inventory"
+        name="Inventory"
+        parent="menu_retail_management"
+        
+        sequence="40"
+    />
+    
+    <menuitem
+        id="menu_retail_stock"
+        name="Stock Overview"
+        parent="menu_retail_inventory"
+        action="action_retail_inventory"
+        sequence="5"
+    />
+    <menuitem
+        id="menu_retail_stock_locations"
+        name="Stock Locations"
+        parent="menu_retail_inventory"
+        action="action_retail_stock_locations"
+        sequence="10"
+    />
+    <menuitem
+        id="menu_retail_inventory_adjustments"
+        name="Stock Adjustments"
+        parent="menu_retail_inventory"
+        action="action_retail_inventory_adjustments"
+        sequence="20"
+    />
+    <menuitem
+        id="menu_retail_stock_moves"
+        name="Stock Movements"
+        parent="menu_retail_inventory"
+        action="action_retail_stock_moves"
+        sequence="30"
+    />
+
     <!-- Configuration -->
     <menuitem
         id="menu_retail_configuration"
