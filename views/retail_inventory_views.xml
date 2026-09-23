@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Product Inventory Information -->
+    <record id="view_product_product_inventory_form" model="ir.ui.view">
+        <field name="name">product.product.inventory.form</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="product.product_normal_form_view"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='default_code']" position="after">
+
+                <field name="retail_min_stock"/>
+
+                <field name="retail_stock_status"
+                       widget="badge"/>
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="view_retail_inventory_product_list" model="ir.ui.view">
+    <field name="name">retail.inventory.product.list</field>
+    <field name="model">product.product</field>
+    <field name="arch" type="xml">
+
+        <list string="Retail Inventory">
+
+            <field name="default_code"/>
+            <field name="display_name"/>
+
+            <field name="qty_available"/>
+            <field name="free_qty"/>
+            <field name="incoming_qty"/>
+            <field name="outgoing_qty"/>
+
+            <field name="retail_min_stock"/>
+
+            <field name="retail_stock_status"
+                   widget="badge"/>
+
+        </list>
+
+    </field>
+</record>
+<record id="view_retail_inventory_search" model="ir.ui.view">
+    <field name="name">retail.inventory.product.search</field>
+    <field name="model">product.product</field>
+    <field name="arch" type="xml">
+
+        <search string="Inventory">
+
+            <field name="name"/>
+            <field name="default_code"/>
+
+            <filter
+                name="filter_low_stock"
+                string="Low Stock"
+                domain="[('retail_stock_status', '=', 'low_stock')]"
+            />
+
+            <filter
+                name="filter_out_of_stock"
+                string="Out of Stock"
+                domain="[('retail_stock_status', '=', 'out_of_stock')]"
+            />
+
+            <filter
+                name="filter_in_stock"
+                string="In Stock"
+                domain="[('retail_stock_status', '=', 'in_stock')]"
+            />
+
+            <separator/>
+
+            <filter
+                name="filter_has_stock"
+                string="Available Stock"
+                domain="[('qty_available', '>', 0)]"
+            />
+
+            <filter
+                name="filter_no_stock"
+                string="No Stock"
+                domain="[('qty_available', '=', 0)]"
+            />
+
+        </search>
+
+    </field>
+</record>
+
+<record id="action_retail_inventory" model="ir.actions.act_window">
+    <field name="name">Inventory</field>
+    <field name="res_model">product.product</field>
+    <field name="view_mode">list,form</field>
+    <field name= "search_view_id"
+           ref="view_retail_inventory_search"/>
+    <field name="view_id"
+           ref="view_retail_inventory_product_list"/>
+</record>
+
+<!-- Stock Locations -->
+<record id="action_retail_stock_locations" model="ir.actions.act_window">
+    <field name="name">Stock Locations</field>
+    <field name="res_model">stock.location</field>
+    <field name="view_mode">list,form</field>
+    <field name="domain">[('usage', 'in', ['internal', 'transit'])]</field>
+</record>
+
+<!-- Inventory Adjustments -->
+<record id="action_retail_inventory_adjustments" model="ir.actions.act_window">
+    <field name="name">Inventory Adjustments</field>
+    <field name="res_model">stock.quant</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+<!-- Stock Movement History -->
+<record id="action_retail_stock_moves" model="ir.actions.act_window">
+    <field name="name">Stock Movements</field>
+    <field name="res_model">stock.move</field>
+    <field name="view_mode">list,form</field>
+</record>
+
+
+</odoo>
