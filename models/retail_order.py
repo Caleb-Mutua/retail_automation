@@ -1,5 +1,5 @@
-from odoo import fields, models
-
+from odoo import fields, models  # noqa: I001
+from odoo.exceptions import UserError  # noqa: F401
 
 class SaleOrder(models.Model):
     _inherit = "sale.order"
@@ -42,12 +42,18 @@ class SaleOrder(models.Model):
          })
 
          return True
-    def action_mark_delivered(self):
-         self.write({
-             "retail_order_status": "delivered",
-         })
-
-         return True
+    
+     
+    def action_view_delivery(self):
+        self.ensure_one()
+        
+        return {
+            "type": "ir.actions.act_window",
+            "name": "Delivery",
+            "res_model": "stock.picking",
+            "view_mode": "list, form",
+            "domain":[("origin","=",self.name)],
+        }
     def action_cancel(self):
         result = super().action_cancel()
 
@@ -56,3 +62,5 @@ class SaleOrder(models.Model):
          })
 
         return result
+    
+    
