@@ -4,3 +4,4 @@ from . import retail_customer  # noqa: F401
 from . import retail_order  # noqa: F401
 from . import retail_order_line  # noqa: F401
 from . import retail_inventory  # noqa: F401
+from . import stock_picking  # noqa: F401

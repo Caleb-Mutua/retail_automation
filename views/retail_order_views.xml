@@ -26,13 +26,15 @@
                     class="btn-primary"
                     invisible="retail_order_status != 'processing'"
              />
+            
+             
              <button
-                    name="action_mark_delivered"
-                    string="Mark Delivered"
-                    type="object"
-                    class="btn-primary"
-                    invisible="retail_order_status != 'ready'"
-             />
+                    name= "action_view_delivery"
+                    string= "View Delivery"
+                    type= "object"
+                    class="btn-necessary"
+                    invisible="state not in ('sale', 'done')"
+            />
             </xpath>
             
         </field>
