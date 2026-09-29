@@ -1,4 +1,4 @@
-from odoo import fields, models  # noqa: I001
+from odoo import  api,fields, models  # noqa: I001
 from odoo.exceptions import UserError  # noqa: F401
 
 class SaleOrder(models.Model):
@@ -22,6 +22,67 @@ class SaleOrder(models.Model):
         string="Retail Order Notes"
     )
     
+    payment_ids = fields.One2many(
+       "retail.payment",
+       "sale_order_id",
+       string="Retail Payments",
+    )
+
+    retail_amount_paid = fields.Monetary(
+       string="Amount Paid",
+       compute="_compute_retail_payment",
+       store=True,
+       currency_field="currency_id",
+    )
+
+    retail_balance = fields.Monetary(
+       string="Outstanding Balance",
+       compute="_compute_retail_payment",
+       store=True,
+       currency_field="currency_id",
+    )
+
+    retail_payment_status = fields.Selection(
+       [
+           ("unpaid", "Unpaid"),
+           ("partial", "Partially Paid"),
+           ("paid", "Paid"),
+       ],
+       default= "New",
+       string="Payment Status",
+       compute="_compute_retail_payment",
+       store=True,
+    )
+
+    @api.depends(
+       "amount_total",
+       "payment_ids.amount",
+       "payment_ids.state",
+       "currency_id",
+    )
+    def _compute_retail_payment(self):
+        for order in self:
+            paid = sum(
+            order.payment_ids.filtered(
+                lambda payment: payment.state == "confirmed"
+               ).mapped("amount")
+            )
+
+            order.retail_amount_paid = paid
+            order.retail_balance = max(
+            order.amount_total - paid, 0.0
+            )
+
+        if order.currency_id.compare_amounts(
+            paid, order.amount_total
+        ) >= 0:
+            order.retail_payment_status = "paid"
+        elif order.currency_id.compare_amounts(
+            paid, 0.0
+        ) > 0:
+            order.retail_payment_status = "partial"
+        else:
+            order.retail_payment_status = "unpaid"
     def action_confirm(self):
         result = super().action_confirm()
         

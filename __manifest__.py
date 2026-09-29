@@ -31,7 +31,7 @@
          "views/product_template_views.xml",
          "views/retail_customers_views.xml",
          "views/retail_order_views.xml",
-         
+         'views/retail_payment_views.xml',
         ],
 
     'demo': [],
