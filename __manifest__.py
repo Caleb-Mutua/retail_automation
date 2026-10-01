@@ -21,17 +21,22 @@
                 'contacts',
                 'sale',
                 'stock',
+                'sale_stock',
+                'hr',
+                
                 ],
 
     'data': [
          "security/ir.model.access.csv",
+         'data/retail_payment_sequence.xml',
          "views/retail_inventory_views.xml",
          "views/retail_menu_views.xml",
          "views/retail_brand_views.xml",
          "views/product_template_views.xml",
          "views/retail_customers_views.xml",
          "views/retail_order_views.xml",
-         
+         'views/retail_payment_views.xml',
+         'views/retail_delivery_views.xml',
         ],
 
     'demo': [],

@@ -35,8 +35,44 @@
                     class="btn-necessary"
                     invisible="state not in ('sale', 'done')"
             />
-            </xpath>
-            
+            </xpath>  
+          <notebook>
+                  <!-- Your existing pages -->
+
+                <page string="Payments">
+                    <group>
+                        <group>
+                            <field name="retail_payment_status"
+                                   widget="badge"/>
+
+                            <field name="retail_amount_paid"/>
+                            <field name="retail_balance"/>
+                       </group>
+                   </group>
+
+                   <field name="payment_ids">
+                   <list>
+                       <field name="name"/>
+                       <field name="payment_date"/>
+                       <field name="payment_method"/>
+                       <field name="transaction_reference"/>
+                       <field name="amount"/>
+                       <field name="state" widget="badge"/>
+                   </list>
+                   </field>
+                </page>
+                <page string="Deliveries">
+                    <field name="picking_ids" readonly="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="scheduled_date" string="Scheduled Date"/>
+                            <field name="date_done" string="Delivery date"/>
+                            <field name="picking_type_id" string="operation"/>
+                            <field name="state" string="status" widget="badge"/>
+                        </list>
+                    </field>
+                </page>
+          </notebook>
         </field>
     </record>
 
