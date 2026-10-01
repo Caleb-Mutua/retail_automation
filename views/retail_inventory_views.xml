@@ -10,10 +10,14 @@
 
             <xpath expr="//field[@name='default_code']" position="after">
 
-                <field name="retail_min_stock"/>
+                <field name="retail_min_stock"
+                       groups="stock.group_stock_manager"/>
 
                 <field name="retail_stock_status"
-                       widget="badge"/>
+                       widget="badge"
+                       decoration-danger="retail_stock_status == 'out_of_stock'"
+                       decoration-warning="retail_stock_status == 'low_stock'"
+                       decoration-success="retail_stock_status == 'in_stock'"/>
 
             </xpath>
 
@@ -35,10 +39,14 @@
             <field name="incoming_qty"/>
             <field name="outgoing_qty"/>
 
-            <field name="retail_min_stock"/>
+            <field name="retail_min_stock"
+                   groups="stock.group_stock_manager"/>
 
             <field name="retail_stock_status"
-                   widget="badge"/>
+                   widget="badge"
+                   decoration-danger="retail_stock_status == 'out_of_stock'"
+                   decoration-warning="retail_stock_status == 'low_stock'"
+                   decoration-success="retail_stock_status == 'in_stock'"/>
 
         </list>
 
@@ -62,6 +70,7 @@
 
             <filter
                 name="filter_out_of_stock"
+                
                 string="Out of Stock"
                 domain="[('retail_stock_status', '=', 'out_of_stock')]"
             />

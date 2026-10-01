@@ -1,4 +1,4 @@
-from odoo import  fields, models  # noqa: I001
+from odoo import  fields, models,api   # noqa: I001
 from odoo.exceptions import UserError
 
 
@@ -11,8 +11,10 @@ class RetailPayment(models.Model):
         string="Payment Reference",
         required=True,
         copy=False,
+        readony= True,
         default="New",
     )
+    
 
     sale_order_id = fields.Many2one(
         "sale.order",
@@ -78,7 +80,18 @@ class RetailPayment(models.Model):
     )
 
     notes = fields.Text(string="Notes")
-
+    
+    @api.model_create_multi
+    def create(self,vals_list):
+        for vals in vals_list:
+            if vals.get("name","New") == "New":
+                vals["name"] =(
+                    self.env["ir.sequence"].next_by_code("retail.payment")
+                    or "New"
+                )
+                  
+            return super().create(vals_list)
+        
     def action_confirm(self):
         for payment in self:
             if payment.state != "draft":

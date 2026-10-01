@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_picking_form_retail_delivery"
+            model="ir.ui.view">
+        <field name="name">stock.picking.form.retail.delivery</field>
+        <field name="model">stock.picking</field>
+        <field name="inherit_id" ref="stock.view_picking_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='picking_type_id']" position="after">
+                
+                <field name="delivery_employee_id"
+                       invisible= "picking_type_code != 'outgoing'"/>
+                <field name="delivery_notes"
+                       placeholder="Enter delivery or handover notes..."/>
+                <field name="date_done" string="Delivery Date"/>
+                <field name="customer_signature"
+                       widget="signature"/>
+               
+            </xpath>
+
+        </field>
+    </record>
+</odoo>

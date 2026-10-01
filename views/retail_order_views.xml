@@ -36,7 +36,7 @@
                     invisible="state not in ('sale', 'done')"
             />
             </xpath>  
-        <notebook>
+          <notebook>
                   <!-- Your existing pages -->
 
                 <page string="Payments">
@@ -59,9 +59,20 @@
                        <field name="amount"/>
                        <field name="state" widget="badge"/>
                    </list>
-               </field>
-           </page>
-        </notebook>
+                   </field>
+                </page>
+                <page string="Deliveries">
+                    <field name="picking_ids" readonly="1">
+                        <list>
+                            <field name="name"/>
+                            <field name="scheduled_date" string="Scheduled Date"/>
+                            <field name="date_done" string="Delivery date"/>
+                            <field name="picking_type_id" string="operation"/>
+                            <field name="state" string="status" widget="badge"/>
+                        </list>
+                    </field>
+                </page>
+          </notebook>
         </field>
     </record>
 

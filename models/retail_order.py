@@ -48,10 +48,15 @@ class SaleOrder(models.Model):
            ("partial", "Partially Paid"),
            ("paid", "Paid"),
        ],
-       default= "New",
+       
        string="Payment Status",
        compute="_compute_retail_payment",
        store=True,
+    )
+    deliverey_ids = fields.One2many(
+        "stock.picking",
+        "sale_id",
+        string= "Deliveries",
     )
 
     @api.depends(
@@ -112,7 +117,7 @@ class SaleOrder(models.Model):
             "type": "ir.actions.act_window",
             "name": "Delivery",
             "res_model": "stock.picking",
-            "view_mode": "list, form",
+            "view_mode": "list,form",
             "domain":[("origin","=",self.name)],
         }
     def action_cancel(self):
