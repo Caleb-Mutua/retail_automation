@@ -1,3 +1,6 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_retail_brand_user,retail.brand.user,model_retail_brand,base.group_user,1,1,1,1
 access_retail_payment_user,retail.payment.user,model_retail_payment,base.group_user,1,1,1,1
+access_retail_inventory_report_user,retail.inventory.report.user,model_retail_inventory_report,base.group_user,1,0,0,0
+access_retail_payment_report_user,retail.payment.report.user,model_retail_payment_report,base.group_user,1,0,0,0
+access_retail_delivery_report_user,retail.delivery.report.user,model_retail_delivery_report,base.group_user,1,0,0,0

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Payment Analysis List -->
+    <record id="view_retail_payment_report_list" model="ir.ui.view">
+        <field name="name">retail.payment.report.list</field>
+        <field name="model">retail.payment.report</field>
+        <field name="arch" type="xml">
+            <list string="Payment Analysis">
+                <field name="sale_order_id"/>
+                <field name="partner_id"/>
+                <field name="order_total"/>
+                <field name="amount_paid"/>
+                <field name="amount_outstanding"/>
+                <field name="payment_status"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Payment Analysis Pivot -->
+    <record id="view_retail_payment_report_pivot" model="ir.ui.view">
+        <field name="name">retail.payment.report.pivot</field>
+        <field name="model">retail.payment.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Payment Analysis">
+
+                <field name="partner_id" type="row"/>
+                <field name="payment_status" type="col"/>
+
+                <field name="order_total" type="measure"/>
+                <field name="amount_paid" type="measure"/>
+                <field name="amount_outstanding" type="measure"/>
+
+            </pivot>
+        </field>
+    </record>
+
+
+    <!-- Payment Analysis Graph -->
+    <record id="view_retail_payment_report_graph" model="ir.ui.view">
+        <field name="name">retail.payment.report.graph</field>
+        <field name="model">retail.payment.report</field>
+        <field name="arch" type="xml">
+            <graph string="Payment Overview" type="bar">
+
+                <field name="payment_status"/>
+                <field name="amount_paid" type="measure"/>
+                <field name="amount_outstanding" type="measure"/>
+
+            </graph>
+        </field>
+    </record>
+
+
+    <!-- Payment Analysis Search -->
+    <record id="view_retail_payment_report_search" model="ir.ui.view">
+        <field name="name">retail.payment.report.search</field>
+        <field name="model">retail.payment.report</field>
+        <field name="arch" type="xml">
+            <search string="Payment Analysis">
+
+                <field name="sale_order_id"/>
+                <field name="partner_id"/>
+
+                <filter
+                    name="unpaid"
+                    string="Unpaid"
+                    domain="[('payment_status', '=', 'unpaid')]"
+                />
+
+                <filter
+                    name="partial"
+                    string="Partially Paid"
+                    domain="[('payment_status', '=', 'partial')]"
+                />
+
+                <filter
+                    name="paid"
+                    string="Paid"
+                    domain="[('payment_status', '=', 'paid')]"
+                />
+
+                <separator/>
+
+                <group expand="0" string="Group By">
+
+                    <filter
+                        name="group_customer"
+                        string="Customer"
+                        context="{'group_by': 'partner_id'}"
+                    />
+
+                    <filter
+                        name="group_status"
+                        string="Payment Status"
+                        context="{'group_by': 'payment_status'}"
+                    />
+
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Payment Analysis Action -->
+    <record
+        id="action_retail_payment_report"
+        model="ir.actions.act_window"
+    >
+        <field name="name">Payment Analysis</field>
+        <field name="res_model">retail.payment.report</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Analyze retail payments.
+            </p>
+            <p>
+                Review payments received, outstanding balances,
+                and payment status by sales order and customer.
+            </p>
+        </field>
+    </record>
+
+
+    <!-- Payment Analysis Menu -->
+    <menuitem
+        id="menu_retail_payment_analysis"
+        name="Payment Analysis"
+        parent="menu_retail_reporting"
+        action="action_retail_payment_report"
+        sequence="30"
+    />
+
+</odoo>

@@ -6,3 +6,6 @@ from . import retail_order_line  # noqa: F401
 from . import retail_inventory  # noqa: F401
 from . import stock_picking  # noqa: F401
 from . import retail_payment  # noqa: F401
+from . import retail_inventory_report  # noqa: F401
+from . import retail_payment_report # noqa: F401
+from . import retail_delivery_report # noqa: F401

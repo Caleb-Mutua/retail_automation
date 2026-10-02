@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <!-- Delivery Analysis List View -->
+    <record id="view_retail_delivery_report_list" model="ir.ui.view">
+        <field name="name">retail.delivery.report.list</field>
+        <field name="model">retail.delivery.report</field>
+        <field name="arch" type="xml">
+            <list string="Delivery Analysis">
+                <field name="picking_id"/>
+                <field name="sale_order_id"/>
+                <field name="partner_id"/>
+                <field name="employee_id"/>
+                <field name="scheduled_date"/>
+                <field name="date_done"/>
+                <field name="picking_state"/>
+                <field name="retail_order_status"/>
+                <field name="delivery_days"/>
+            </list>
+        </field>
+    </record>
+
+
+    <!-- Delivery Analysis Pivot -->
+    <record id="view_retail_delivery_report_pivot" model="ir.ui.view">
+        <field name="name">retail.delivery.report.pivot</field>
+        <field name="model">retail.delivery.report</field>
+        <field name="arch" type="xml">
+            <pivot string="Delivery Analysis">
+                <field name="employee_id" type="row"/>
+                <field name="picking_state" type="col"/>
+                <field name="delivery_days" type="measure"/>
+            </pivot>
+        </field>
+    </record>
+
+
+    <!-- Delivery Analysis Graph -->
+    <record id="view_retail_delivery_report_graph" model="ir.ui.view">
+        <field name="name">retail.delivery.report.graph</field>
+        <field name="model">retail.delivery.report</field>
+        <field name="arch" type="xml">
+            <graph string="Delivery Analysis" type="bar">
+                <field name="employee_id"/>
+                <field name="picking_state"/>
+                <field name="delivery_days" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+
+    <!-- Delivery Analysis Search -->
+    <record id="view_retail_delivery_report_search" model="ir.ui.view">
+        <field name="name">retail.delivery.report.search</field>
+        <field name="model">retail.delivery.report</field>
+        <field name="arch" type="xml">
+            <search string="Delivery Analysis">
+
+                <field name="picking_id"/>
+                <field name="sale_order_id"/>
+                <field name="partner_id"/>
+                <field name="employee_id"/>
+
+                <filter
+                    name="delivered"
+                    string="Delivered"
+                    domain="[('picking_state', '=', 'done')]"
+                />
+
+                <filter
+                    name="ready"
+                    string="Ready"
+                    domain="[('picking_state', '=', 'assigned')]"
+                />
+
+                <filter
+                    name="pending"
+                    string="Pending"
+                    domain="[('picking_state', 'in', ['waiting', 'confirmed'])]"
+                />
+
+                <filter
+                    name="cancelled"
+                    string="Cancelled"
+                    domain="[('picking_state', '=', 'cancel')]"
+                />
+
+                <group string="Group By">
+
+                    <filter
+                        name="group_employee"
+                        string="Delivery Employee"
+                        context="{'group_by': 'employee_id'}"
+                    />
+
+                    <filter
+                        name="group_customer"
+                        string="Customer"
+                        context="{'group_by': 'partner_id'}"
+                    />
+
+                    <filter
+                        name="group_delivery_status"
+                        string="Delivery Status"
+                        context="{'group_by': 'picking_state'}"
+                    />
+
+                    <filter
+                        name="group_order_status"
+                        string="Retail Order Status"
+                        context="{'group_by': 'retail_order_status'}"
+                    />
+
+                </group>
+
+            </search>
+        </field>
+    </record>
+
+
+    <!-- Delivery Analysis Action -->
+    <record id="action_retail_delivery_report" model="ir.actions.act_window">
+        <field name="name">Delivery Analysis</field>
+        <field name="res_model">retail.delivery.report</field>
+        <field name="view_mode">pivot,graph,list</field>
+        <field name="search_view_id" ref="view_retail_delivery_report_search"/>
+    </record>
+     <!-- Reporting Menu -->
+    <menuitem
+        id="menu_retail_delivery_analysis"
+        name="Delivery Analysis"
+        parent="menu_retail_reporting"
+        action="action_retail_delivery_report"
+        sequence="20"
+    />
+</odoo>

@@ -37,6 +37,10 @@
          "views/retail_order_views.xml",
          'views/retail_payment_views.xml',
          'views/retail_delivery_views.xml',
+         'views/retail_reporting_views.xml',
+         'views/retail_inventory_report_views.xml',
+         'views/retail_payment_report_views.xml',
+         'views/retail_delivery_report_views.xml',
         ],
 
     'demo': [],
