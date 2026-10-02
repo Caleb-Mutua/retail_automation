@@ -7,7 +7,8 @@ class productProduct(models.Model):
     retail_min_stock =fields.Float(
         string='Minimun Stock Level',
         default= 0.0,
-        help='Minimun quantity that should normally be available.'
+        help='Minimun quantity that should normally be available.',
+        groups='stock.group_stsock_manager',
     )
     
     retail_stock_status = fields.Selection(
